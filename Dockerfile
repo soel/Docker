@@ -5,6 +5,7 @@ RUN yum install -y openssh
 RUN yum install -y openssh-server
 RUN yum install -y openssh-clients
 RUN yum install -y sudo
+RUN yum install -y wget
 
 ## create user
 
@@ -13,6 +14,7 @@ RUN mkdir -p /root/.ssh; chown root /root/.ssh; chmod 700 /root/.ssh
 RUN wget http://172.16.62.126/kickstart/cfgs/root.authorized_keys -O /root/authorized_keys
 RUN mv -f /root/authorized_keys /root/.ssh/authorized_keys
 RUN chown root.root /root/.ssh/authorized_keys; chmod 600 /root/.ssh/authorized_keys
+RUN echo 'password' | passwd --stdin root
 
 ## setup sudoers
 
